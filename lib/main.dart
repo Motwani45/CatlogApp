@@ -1,15 +1,26 @@
 import 'package:catlog_flutter/pages/HomePage.dart';
+import 'package:catlog_flutter/pages/LoginPage.dart';
+import 'package:catlog_flutter/utils/routes.dart';
+import 'package:catlog_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    return const HomePage();
+    return MaterialApp(
+      themeMode: ThemeMode.light,
+      theme: MyTheme.lighttheme,
+      darkTheme: MyTheme.darktheme,
+      initialRoute: MyRoutes.homeRoute,
+      routes: {
+        MyRoutes.homeRoute: (context) => HomePage(),
+        MyRoutes.loginRoute: (context) => LoginPage(),
+      },
+    );
   }
 }
