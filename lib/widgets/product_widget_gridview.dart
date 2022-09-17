@@ -16,37 +16,31 @@ class ProductWidgetGridView extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child:
                 // *** GridTile*** //
-                GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3,),
-              itemBuilder:(context,index){
-                final item=HomePage.prod[index];
-                return GridTile(child: Image.network(item.image));
-              },
-              itemCount: HomePage.prod.length,
-            )
+
             // *** GridTile*** //
-            // GridTile(
-            //   child: Column(
-            //     children: [
-            //       Image.network(
-            //         product.image,
-            //         height: 85,
-            //         width: 100,
-            //       ),
-            //       Text(
-            //         product.name,
-            //         style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            //       ),
-            //       Text(
-            //         "\$${product.price}",
-            //         style: TextStyle(
-            //             fontWeight: FontWeight.bold,
-            //             color: Colors.deepPurple,
-            //             fontSize: 15),
-            //       )
-            //     ],
-            //   ),
-            // ),
+            Container(
+              height: double.maxFinite,
+              child: Column(
+                children: [
+                  Image.network(
+                    product.image,
+                    height: 30,
+                    width: 100,
+                  ),
+                  Text(
+                    product.name,
+                    style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    "\$${product.price}",
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.deepPurple,
+                        fontSize: 10),
+                  )
+                ],
+              ),
+            ),
 
             // *** GridTileBar ***//
             // GridTileBar(leading: Image.network(product.image,width: 50,),title: Text(product.name),trailing: Text("\$${product.price}"),)

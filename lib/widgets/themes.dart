@@ -5,7 +5,7 @@ class MyTheme{
   static ThemeData lighttheme=ThemeData(
       primarySwatch: Colors.deepPurple,
       fontFamily: GoogleFonts
-          .lato()
+          .poppins()
           .fontFamily,
       appBarTheme:const AppBarTheme(color: Colors.white,elevation: 0,iconTheme: IconThemeData(color: Colors.black),
           titleTextStyle: TextStyle(fontWeight: FontWeight.bold,color: Colors.black,fontSize: 20),
