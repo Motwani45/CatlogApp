@@ -22,10 +22,11 @@ class ProductWidget extends StatelessWidget {
                 child:
                 //*** FadeInImage ***//
                 FadeInImage(fadeOutDuration: Duration(seconds: 2),
-                  placeholder:Image.asset("assets/images/hey.jpg").image,
+                  placeholder:Image.asset("assets/images/hey.jpg",fit: BoxFit.cover,).image,
                   image: Image.network(
                     product.image,
                   ).image,
+
                 )
                 // Image.network(
                 //   product.image,
@@ -33,7 +34,7 @@ class ProductWidget extends StatelessWidget {
                     .box
                     .square(120)
                     .rounded
-                    .color(MyTheme.creamColor)
+                    .color(context.theme.canvasColor)
                     .make()
                     .p16()
                     .w40(context),
@@ -44,10 +45,12 @@ class ProductWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       product.name.text.lg
-                          .color(MyTheme.darkBluishColor)
+                          .color(context.accentColor)
                           .bold
                           .make(),
-                      product.desc.text.textStyle(context.captionStyle).make(),
+                      product.desc.text.textStyle(context.captionStyle).
+                          color(context.accentColor).
+                      make(),
                       10.heightBox,
                       ButtonBar(
                         alignment: MainAxisAlignment.spaceBetween,
@@ -59,7 +62,7 @@ class ProductWidget extends StatelessWidget {
                               style: ButtonStyle(
                                   backgroundColor:
                                   MaterialStateProperty.all(
-                                      MyTheme.darkBluishColor),
+                                      context.theme.floatingActionButtonTheme.backgroundColor),
                                   shape: MaterialStateProperty.all(
                                       StadiumBorder())),
                               child: Icon(Icons.add_shopping_cart),)
@@ -69,7 +72,7 @@ class ProductWidget extends StatelessWidget {
                   ))
 
             ],
-          )).white.rounded.square(150).make().py16();
+          )).color(context.cardColor).rounded.square(150).make().py16();
 
     // *** Catlog Design 1 ***//
     // Card(

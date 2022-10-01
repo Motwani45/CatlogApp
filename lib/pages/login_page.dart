@@ -1,5 +1,7 @@
 import 'package:catlog_flutter/utils/routes.dart';
+import 'package:catlog_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -29,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white,
+      color: context.canvasColor,
       child: SingleChildScrollView(
         child: Form(
           key: _formKey,
@@ -56,10 +58,11 @@ class _LoginPageState extends State<LoginPage> {
                 child: Column(
                   children: [
                     TextFormField(
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           hintText: "Enter Username",
                           labelText: "Username",
-                          border: OutlineInputBorder()),
+                      enabledBorder:context.theme.inputDecorationTheme.enabledBorder ,
+                      focusedBorder: context.theme.inputDecorationTheme.focusedBorder),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "Username cannot be empty";
@@ -77,10 +80,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     TextFormField(
                       obscureText: true,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                           hintText: "Enter Password",
                           labelText: "Password",
-                          border: OutlineInputBorder()),
+                          enabledBorder: context.theme.inputDecorationTheme.enabledBorder,
+                          focusedBorder:context.theme.inputDecorationTheme.focusedBorder),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return "Password cannot be empty";
@@ -97,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                       height: 40,
                     ),
                     Material(
-                      color: Colors.deepPurple,
+                      color: context.theme.floatingActionButtonTheme.backgroundColor,
                       borderRadius:
                           BorderRadius.circular(changeButton ? 50 : 5),
                       child: InkWell(

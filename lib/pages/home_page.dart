@@ -44,10 +44,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     print("build method called");
     return Scaffold(
-      floatingActionButton: FloatingActionButton(backgroundColor: MyTheme.darkBluishColor,onPressed:(){
+      floatingActionButton: FloatingActionButton(backgroundColor:context.theme.floatingActionButtonTheme.backgroundColor,onPressed:(){
         Navigator.pushNamed(context, MyRoutes.cartRoute);
-      } ,child: Icon(Icons.shopping_cart_outlined),),
-        backgroundColor: MyTheme.creamColor,
+      } ,child: Icon(Icons.shopping_cart_outlined,color: Colors.white,),),
+        backgroundColor: context.canvasColor,
         body: SafeArea(
           child: Container(
               padding: Vx.m32,
@@ -58,7 +58,7 @@ class _HomePageState extends State<HomePage> {
                   if (HomePage.prod != null && HomePage.prod!.isNotEmpty)
                     ShowCatlogList().pOnly(top: 16).expand()
                   else
-                    CircularProgressIndicator().centered().expand()
+                    CircularProgressIndicator(color: context.theme.floatingActionButtonTheme.backgroundColor,).centered().expand()
                 ],
               )),
         ));

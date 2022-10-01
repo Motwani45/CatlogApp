@@ -15,28 +15,10 @@ class HomeDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        color: Colors.white,
-        child: ButtonBar(
-          alignment: MainAxisAlignment.spaceBetween,
-          buttonPadding: EdgeInsets.zero,
-          children: [
-            "\$${product.price}".text.xl4.color(Vx.red800).bold.make(),
-            ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluishColor),
-                        shape: MaterialStateProperty.all(StadiumBorder())),
-                    child: Icon(Icons.add_shopping_cart,))
-                .wh(100, 50)
-          ],
-        ).p32(),
-      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: MyTheme.creamColor,
+      backgroundColor: context.canvasColor,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -51,32 +33,57 @@ class HomeDetailPage extends StatelessWidget {
                     arcType: VxArcType.CONVEY,
                     edge: VxEdge.TOP,
                     child: Container(
-                      color: Colors.white,
+                      color: context.cardColor,
                       width: context.screenWidth,
                       child: Column(
                         children: [
                           product.name.text.xl4
-                              .color(MyTheme.darkBluishColor)
+                              .color(context.accentColor)
                               .bold
                               .make(),
                           product.desc.text.xl
                               .textStyle(context.captionStyle)
+                              .color(context.accentColor)
                               .make(),
                           10.heightBox,
-                          Container(
-                            child: lorem(paragraphs: 1, words: 50)
-                                .text
-                                .textStyle(context.captionStyle)
-                                .align(TextAlign.justify)
-                                .sm
-                                .make(),
-                          ).px16(),
+                          Expanded(
+                            child: SingleChildScrollView(
+                              physics: BouncingScrollPhysics(),
+                              child:
+                              lorem(paragraphs: 1, words: 100)
+                                  .text
+                                  // .textStyle(context.captionStyle)
+                                  .color(context.accentColor)
+                                  .align(TextAlign.justify)
+                                  .make()
+                                  .p16(),
+                            ),
+                          ),
                         ],
                       ).py32(),
                     )))
           ],
         ),
       ),
+      bottomNavigationBar:Container(
+        color: context.cardColor,
+        child: ButtonBar(
+            alignment: MainAxisAlignment.spaceBetween,
+            buttonPadding: EdgeInsets.zero,
+            children: [
+              "\$${product.price}".text.xl4.color(Vx.red800).bold.make(),
+              ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(context
+                          .theme.floatingActionButtonTheme.backgroundColor),
+                      shape: MaterialStateProperty.all(StadiumBorder())),
+                  child: Icon(
+                    Icons.add_shopping_cart,
+                  )).wh(100, 50)
+            ],
+          ).p16(),
+      )
     );
   }
 }
