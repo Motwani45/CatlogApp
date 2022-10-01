@@ -14,6 +14,11 @@ class CatlogConvert {
   });
 
   List<Product> products;
+  //Get Product by ID
+  Product getById(int id)=> products.firstWhere((element) => element.id==id,orElse:null);
+
+  // Get Product by Position
+  Product getByPosition(int position)=>products[position];
 
   factory CatlogConvert.fromJson(Map<String, dynamic> json) => CatlogConvert(
     products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),

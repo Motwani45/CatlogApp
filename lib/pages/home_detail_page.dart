@@ -38,12 +38,12 @@ class HomeDetailPage extends StatelessWidget {
                       child: Column(
                         children: [
                           product.name.text.xl4
-                              .color(context.accentColor)
+                              .color(context.theme.focusColor)
                               .bold
                               .make(),
                           product.desc.text.xl
                               .textStyle(context.captionStyle)
-                              .color(context.accentColor)
+                              .color(context.theme.focusColor)
                               .make(),
                           10.heightBox,
                           Expanded(
@@ -53,14 +53,17 @@ class HomeDetailPage extends StatelessWidget {
                               lorem(paragraphs: 1, words: 100)
                                   .text
                                   // .textStyle(context.captionStyle)
-                                  .color(context.accentColor)
+                                  .color(context.theme.focusColor)
                                   .align(TextAlign.justify)
                                   .make()
-                                  .p16(),
+                              .pOnly(left: 16,right: 16,top: 16)
+                                  // .p16(),
                             ),
                           ),
                         ],
-                      ).py32(),
+                      )
+                      .pOnly(top:32)
+                          // .py32(),
                     )))
           ],
         ),

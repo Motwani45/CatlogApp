@@ -45,11 +45,11 @@ class ProductWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       product.name.text.lg
-                          .color(context.accentColor)
+                          .color(context.theme.focusColor)
                           .bold
                           .make(),
                       product.desc.text.textStyle(context.captionStyle).
-                          color(context.accentColor).
+                          color(context.theme.focusColor).
                       make(),
                       10.heightBox,
                       ButtonBar(
