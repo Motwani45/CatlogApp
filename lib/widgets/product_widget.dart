@@ -1,9 +1,12 @@
 import 'dart:math';
 
+import 'package:catlog_flutter/models/cart.dart';
+import 'package:catlog_flutter/pages/home_page.dart';
 import 'package:catlog_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../models/catlogconvert.dart';
+import 'home_widgets/add_to_cart.dart';
 
 class ProductWidget extends StatelessWidget {
   final Product product;
@@ -57,15 +60,7 @@ class ProductWidget extends StatelessWidget {
                         buttonPadding: EdgeInsets.zero,
                         children: [
                           "\$${product.price}".text.xl.bold.make(),
-                          ElevatedButton(
-                              onPressed: () {},
-                              style: ButtonStyle(
-                                  backgroundColor:
-                                  MaterialStateProperty.all(
-                                      context.theme.floatingActionButtonTheme.backgroundColor),
-                                  shape: MaterialStateProperty.all(
-                                      StadiumBorder())),
-                              child: Icon(Icons.add_shopping_cart),)
+                          AddToCart(product: product,)
                         ],
                       ).pOnly(right: 8)
                     ],
@@ -99,3 +94,4 @@ class ProductWidget extends StatelessWidget {
     // );
   }
 }
+

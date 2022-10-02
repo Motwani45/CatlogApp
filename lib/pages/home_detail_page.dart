@@ -1,3 +1,4 @@
+import 'package:catlog_flutter/widgets/home_widgets/add_to_cart.dart';
 import 'package:catlog_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_lorem/flutter_lorem.dart';
@@ -17,6 +18,10 @@ class HomeDetailPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back,),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
       ),
       backgroundColor: context.canvasColor,
       body: SafeArea(
@@ -75,15 +80,7 @@ class HomeDetailPage extends StatelessWidget {
             buttonPadding: EdgeInsets.zero,
             children: [
               "\$${product.price}".text.xl4.color(Vx.red800).bold.make(),
-              ElevatedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(context
-                          .theme.floatingActionButtonTheme.backgroundColor),
-                      shape: MaterialStateProperty.all(StadiumBorder())),
-                  child: Icon(
-                    Icons.add_shopping_cart,
-                  )).wh(100, 50)
+            AddToCart(product: product).wh(100, 50)
             ],
           ).p16(),
       )

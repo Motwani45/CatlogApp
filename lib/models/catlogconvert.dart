@@ -9,11 +9,14 @@ CatlogConvert catlogConvertFromJson(String str) => CatlogConvert.fromJson(json.d
 String catlogConvertToJson(CatlogConvert data) => json.encode(data.toJson());
 
 class CatlogConvert {
-  CatlogConvert({
-    required this.products,
-  });
+  static final catlogConvert=CatlogConvert._internal();
+  CatlogConvert._internal();
+  factory CatlogConvert({required List<Product> products}){
+    catlogConvert.products=products;
+    return catlogConvert;
+  }
 
-  List<Product> products;
+   late List<Product> products;
   //Get Product by ID
   Product getById(int id)=> products.firstWhere((element) => element.id==id,orElse:null);
 
