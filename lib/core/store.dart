@@ -1,6 +1,5 @@
 import 'package:catlog_flutter/models/cart.dart';
 import 'package:catlog_flutter/models/catlogconvert.dart';
-import 'package:catlog_flutter/pages/home_page.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class MyStore extends VxStore{

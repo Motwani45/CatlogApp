@@ -40,7 +40,7 @@ class _LoginPageState extends State<LoginPage> {
               Image.asset(
                 "assets/images/hey.png",
                 fit: BoxFit.fill,
-              ),
+              ).h40(context),
               const SizedBox(
                 height: 20,
               ),

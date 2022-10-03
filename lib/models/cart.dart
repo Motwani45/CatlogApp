@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:catlog_flutter/core/store.dart';
 import 'package:catlog_flutter/models/catlogconvert.dart';
