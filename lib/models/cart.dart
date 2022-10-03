@@ -1,11 +1,10 @@
 import 'dart:ffi';
 
+import 'package:catlog_flutter/core/store.dart';
 import 'package:catlog_flutter/models/catlogconvert.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class CartModel {
-  static final cartModel=CartModel._internal();
-  CartModel._internal();
-  factory CartModel()=>cartModel;
   late CatlogConvert _catlog;
 
   CatlogConvert get catlog => _catlog;
@@ -32,4 +31,35 @@ class CartModel {
   void removeProduct(Product product) {
     _productIds.remove(product.id);
   }
+}
+class AddMutation extends VxMutation<MyStore>{
+  final Product product;
+
+  AddMutation(this.product);
+
+  @override
+  perform() {
+  store!.cartModel._productIds.add(product.id);
+  }
+
+}
+class RemoveMutation extends VxMutation<MyStore>{
+  final Product product;
+
+  RemoveMutation(this.product);
+
+  @override
+  perform() {
+  store!.cartModel._productIds.remove(product.id);
+  }
+
+}
+class PriceMutation extends VxMutation{
+  // final Product product;
+  // PriceMutation(this.product);
+  @override
+  perform() {
+
+  }
+
 }

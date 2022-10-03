@@ -4,28 +4,32 @@
 
 import 'dart:convert';
 
+import 'package:catlog_flutter/core/store.dart';
+import 'package:velocity_x/velocity_x.dart';
+
 CatlogConvert catlogConvertFromJson(String str) => CatlogConvert.fromJson(json.decode(str));
 
 String catlogConvertToJson(CatlogConvert data) => json.encode(data.toJson());
 
 class CatlogConvert {
-  static final catlogConvert=CatlogConvert._internal();
-  CatlogConvert._internal();
-  factory CatlogConvert({required List<Product> products}){
-    catlogConvert.products=products;
-    return catlogConvert;
-  }
+  CatlogConvert({
+    required this.products
+});
 
-   late List<Product> products;
+   final List<Product> products;
   //Get Product by ID
   Product getById(int id)=> products.firstWhere((element) => element.id==id,orElse:null);
 
   // Get Product by Position
   Product getByPosition(int position)=>products[position];
 
-  factory CatlogConvert.fromJson(Map<String, dynamic> json) => CatlogConvert(
+  factory CatlogConvert.fromJson(Map<String, dynamic> json) {
+    final CatlogConvert catlogConvert=CatlogConvert(
     products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
   );
+    (VxState.store as MyStore).catlogConvert=catlogConvert;
+    print("Products: "+(VxState.store as MyStore).catlogConvert.products.toString());
+  return catlogConvert;}
 
   Map<String, dynamic> toJson() => {
     "products": List<dynamic>.from(products.map((x) => x.toJson())),

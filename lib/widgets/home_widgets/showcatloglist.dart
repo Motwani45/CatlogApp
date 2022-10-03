@@ -1,10 +1,10 @@
 import 'package:catlog_flutter/pages/home_detail_page.dart';
 import 'package:flutter/material.dart';
-import 'package:velocity_x/velocity_x.dart';
+// import 'package:velocity_x/velocity_x.dart';
 
 import '../../pages/home_page.dart';
 import '../../widgets/product_widget.dart';
-import '../../widgets/themes.dart';
+// import '../../widgets/themes.dart';
 
 class ShowCatlogList extends StatelessWidget {
   const ShowCatlogList({Key? key}) : super(key: key);

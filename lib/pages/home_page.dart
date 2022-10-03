@@ -28,6 +28,7 @@ class _HomePageState extends State<HomePage> {
       loadData().then((value) {
         HomePage.prod = value;
         print("catalogjson return hone ke badd yaha pauncha");
+        
         setState(() {});
       });
 

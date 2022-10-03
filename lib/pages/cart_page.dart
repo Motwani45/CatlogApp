@@ -4,6 +4,8 @@ import 'package:catlog_flutter/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../core/store.dart';
+
 class CartPage extends StatelessWidget {
   CartPage({Key? key}) : super(key: key);
 
@@ -24,29 +26,28 @@ class CartPage extends StatelessWidget {
   }
 }
 
-class _CartTotal extends StatefulWidget {
+class _CartTotal extends StatelessWidget {
   _CartTotal({Key? key}) : super(key: key);
-
-  @override
-  State<_CartTotal> createState() => _CartTotalState();
-}
-
-class _CartTotalState extends State<_CartTotal> {
-  final _cart = CartModel();
+    final CartModel _cart=(VxState.store as MyStore).cartModel;
 
   @override
   Widget build(BuildContext context) {
+    // VxState.watch(context, on: [PriceMutation]);
     print("CartTotal");
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}"
-              .text
-              .xl5
-              .color(context.theme.focusColor)
-              .make(),
+          VxConsumer(
+            builder: (context,Null,_){
+              return "\$${_cart.totalPrice}"
+                  .text
+                  .xl5
+                  .color(context.theme.focusColor)
+                  .make();
+            }, mutations:{RemoveMutation},
+          ),
           30.widthBox,
           ElevatedButton(
                   onPressed: () {
@@ -62,24 +63,14 @@ class _CartTotalState extends State<_CartTotal> {
       ),
     );
   }
-
-  void changeTotalPrice() {
-    setState(() {});
-  }
 }
 
-class _CartList extends StatefulWidget {
-  const _CartList({Key? key}) : super(key: key);
-
-  @override
-  State<_CartList> createState() => _CartListState();
-}
-
-class _CartListState extends State<_CartList> {
-  final _cart = CartModel();
-
+class _CartList extends StatelessWidget {
+  _CartList({Key? key}) : super(key: key);
+  final CartModel _cart=(VxState.store as MyStore).cartModel;
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [AddMutation,RemoveMutation]);
     print("CartList");
     return _cart.products.isEmpty?"Cart is Empty".text.center.xl3.make():ListView.builder(
       itemBuilder: (context, index) => ListTile(
@@ -87,8 +78,8 @@ class _CartListState extends State<_CartList> {
         trailing: IconButton(
           icon: Icon(Icons.delete),
           onPressed: () {
-            _cart.removeProduct(_cart.products[index]);
-            setState(() {});
+            RemoveMutation(_cart.products[index]);
+            // PriceMutation();
           },
         ),
         title: _cart.products[index].name.text.make(),
