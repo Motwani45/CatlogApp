@@ -55,7 +55,8 @@ class _HomePageState extends State<HomePage> {
               backgroundColor:
               context.theme.floatingActionButtonTheme.backgroundColor,
               onPressed: () {
-                Navigator.pushNamed(context, MyRoutes.cartRoute);
+                context.vxNav.push(Uri.parse(MyRoutes.cartRoute));
+
               },
               child: Icon(
                 Icons.shopping_cart_outlined,

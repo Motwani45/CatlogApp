@@ -19,7 +19,11 @@ class _LoginPageState extends State<LoginPage> {
       setState(() {
         changeButton = true;
       });
-      await Navigator.pushNamed(context, MyRoutes.homeRoute);
+      await
+      //*** Navigator2.0 (Velocity x)***//
+      context.vxNav.push(Uri.parse(MyRoutes.homeRoute));
+      //*** Navigator ***//
+      // Navigator.pushNamed(context, MyRoutes.homeRoute);
       setState(() {
         changeButton = false;
       });

@@ -1,5 +1,7 @@
 import 'package:catlog_flutter/pages/home_detail_page.dart';
+import 'package:catlog_flutter/utils/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:velocity_x/velocity_x.dart';
 // import 'package:velocity_x/velocity_x.dart';
 
 import '../../pages/home_page.dart';
@@ -17,11 +19,8 @@ class ShowCatlogList extends StatelessWidget {
       itemBuilder: (context, index) {
         final product = HomePage.prod![index];
         return InkWell(
-            onTap:()=> Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => HomeDetailPage(product: product))),
-            child: ProductWidget(product: product));
+            onTap:()=> context.vxNav.push(Uri(path: MyRoutes.homeDetailsRoute,queryParameters:{"id":product.id.toString()}))
+            ,child: ProductWidget(product: product));
       },
       itemCount: HomePage.prod!.length,
     );

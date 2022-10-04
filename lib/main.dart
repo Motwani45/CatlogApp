@@ -17,16 +17,29 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       themeMode: ThemeMode.system,
       theme: MyTheme.lighttheme(context),
       darkTheme: MyTheme.darktheme(context),
-      initialRoute: MyRoutes.loginRoute,
-      routes: {
-        MyRoutes.homeRoute: (context) => HomePage(),
-        MyRoutes.loginRoute: (context) => LoginPage(),
-        MyRoutes.cartRoute: (context) => CartPage(),
-      },
+      routeInformationParser: VxInformationParser(),
+      routerDelegate: VxNavigator( routes: {
+        "/":(_,__)=> MaterialPage(child: LoginPage()),
+        MyRoutes.homeRoute: (_,__) => MaterialPage(child:HomePage()),
+        MyRoutes.homeDetailsRoute: (uri,_) {
+          final catlog=(VxState.store as MyStore).catlogConvert.getById(int.parse(uri.queryParameters["id"]!));
+          return MaterialPage(child:HomeDetailPage(product: catlog,));
+        },
+        MyRoutes.loginRoute: (_,__) => MaterialPage(child:LoginPage()),
+        MyRoutes.cartRoute: (_,__) => MaterialPage(child:CartPage()),
+      }, ),
+      //*** Before Navigator 2.0 ***//
+      // initialRoute: MyRoutes.loginRoute,
+      // routes: {
+      //   "/":(context)=> LoginPage(),
+      //   MyRoutes.homeRoute: (context) => HomePage(),
+      //   MyRoutes.loginRoute: (context) => LoginPage(),
+      //   MyRoutes.cartRoute: (context) => CartPage(),
+      // },
     );
   }
 }
